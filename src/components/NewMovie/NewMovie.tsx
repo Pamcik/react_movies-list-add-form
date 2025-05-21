@@ -27,10 +27,10 @@ export const NewMovie: React.FC<Props> = ({ onAdd }) => {
 
   const isFormValid = () => {
     return (
-      form.title.trim() &&
-      form.imgUrl.trim() &&
-      form.imdbUrl.trim() &&
-      form.imdbId.trim()
+      form.title.trim() !== '' &&
+      form.imgUrl.trim() !== '' &&
+      form.imdbUrl.trim() !== '' &&
+      form.imdbId.trim() !== ''
     );
   };
 
@@ -41,11 +41,15 @@ export const NewMovie: React.FC<Props> = ({ onAdd }) => {
       return;
     }
 
-    const trimmedForm: typeof form = Object.fromEntries(
-      Object.entries(form).map(([k, v]) => [k, v.trim()]),
-    ) as typeof form;
+    const trimmedMovie: Movie = {
+      title: form.title.trim(),
+      description: form.description.trim(),
+      imgUrl: form.imgUrl.trim(),
+      imdbUrl: form.imdbUrl.trim(),
+      imdbId: form.imdbId.trim(),
+    };
 
-    onAdd(trimmedForm);
+    onAdd(trimmedMovie);
     setForm(initialForm);
     setFormKey(prev => prev + 1);
   };
