@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import { TextField } from '../TextField';
+import { Movie } from '../../types/Movie';
 
 const initialForm = {
   title: '',
@@ -10,7 +11,7 @@ const initialForm = {
 };
 
 type Props = {
-  onAdd: (movie: typeof initialForm) => void;
+  onAdd: (movie: Movie) => void;
 };
 
 export const NewMovie: React.FC<Props> = ({ onAdd }) => {
