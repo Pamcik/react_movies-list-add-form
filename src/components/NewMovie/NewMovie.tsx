@@ -10,6 +10,12 @@ const initialForm = {
   imdbId: '',
 };
 
+const urlPattern =
+  // eslint-disable-next-line max-len
+  /^((([A-Za-z]{3,9}:(?:\/\/)?)(?:[-;:&=+$,\w]+@)?[A-Za-z0-9.-]+|(?:www\.|[-;:&=+$,\w]+@)[A-Za-z0-9.-]+)((?:\/[+~%/.\w-_]*)?\??(?:[-+=&;%@,.\w_]*)#?(?:[,.!/\\\w]*))?)$/;
+
+const validateUrl = (value: string) => urlPattern.test(value.trim());
+
 type Props = {
   onAdd: (movie: Movie) => void;
 };
@@ -30,7 +36,9 @@ export const NewMovie: React.FC<Props> = ({ onAdd }) => {
       form.title.trim() !== '' &&
       form.imgUrl.trim() !== '' &&
       form.imdbUrl.trim() !== '' &&
-      form.imdbId.trim() !== ''
+      form.imdbId.trim() !== '' &&
+      validateUrl(form.imgUrl) &&
+      validateUrl(form.imdbUrl)
     );
   };
 
